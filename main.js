@@ -1,16 +1,19 @@
 //get the basic card file
 var BasicCard = require("./BasicCard.js");
+//require fs to read and write files
+var fs = require("fs");
 //get the cloze card file
 var ClozeCard = require("./ClozeCard.js");
  //get me inquirer
  var inquirer = require("inquirer");
 //===== Declare varilables first ======
-// the variable questions where the basic questions will be pulled.
+// the question1 pulls questions for the basic card.
 var questions1 = [];
-// the variable questions where the cloze questions will be pulled.
+// the question12 variable pulls questions for the cloze card.
 var questions2 = [];
 var count = 0;
-var correctlyAnswerd = 0;
+var rightAnswer = 0;
+var wrongAnswer = 0;
 
 // ===== questions for the basic card
 var basic1 = new BasicCard("anything that occupies space and has mass is called?", "matter");
@@ -39,24 +42,26 @@ questions2.push(cloze3);
 questions2.push(cloze4);
 questions2.push(cloze5);
 //Use prompt to ask the user which quizlet to play
-inquirer.prompt([
-{
+inquirer.prompt([ {
 	type: "list",
 	name: "choice",
-	message: "Do you want to play with basic or cloze flashcards ?",
+	message: "Do you want to play with basic or cloze flashcards?",
 	choices:["Basic", "Cloze"]
-}
-])
-.then(function(answer){
+} ]).then(function(answer){
 		//If the users choice is basic show them basic questions.
 		if(answer.choice === "Basic"){
+			console.log("\n================================\n");
 			quizlet1();
 		}
-		// If users answer is cloze 
-		else if(answer.choice === "Cloze"){
+		// If users answer is cloze if(answer.choice === "Cloze")
+		else {
+			console.log("\n================================\n");
+
+    log("\n============================================");
 			quizlet2();
 		}
 	});
+
 // <========quizlet function for the basic card ======>
 function quizlet1() {
 //recursion loop to prompt each question individually w/inquirer
@@ -70,16 +75,22 @@ if(count < questions1.length) {
 //if the answer is right increase the correct count and move
 if((answer.question).toLowerCase() === questions1[count].back) {
 	console.log("correct");
-	correctlyAnswerd ++
+	log("\ncorrect");
+	rightAnswer++
 	count++
-	quizlet1();
+	quizlet1();	
+    log("\n============================================");
 } 
 else {
 //if the answer is not right show that it is incorrect and display the right answer
 console.log("incorrect");
+log("\nincorrect");
 console.log("correct Answer:  " + questions1[count].back);
+log("\ncorrect Answer:  " + questions1[count].back);
 count ++
+wrongAnswer++
 quizlet1();
+log("\n============================================");
 }
 
 });
@@ -88,7 +99,8 @@ quizlet1();
 
 
 }
-///<======= function to pull the cloze questions =======>
+log("\n-----------cloze-card-result--------------");
+///<======= quizlet for the cloze cards =======>
 function quizlet2() {
 	if(count < questions2.length) {
 
@@ -99,17 +111,27 @@ function quizlet2() {
 		}
 		]).then(function(answer) {
 // if the person get the right answer show tell they got the right answer and increse the count
-				if((answer.partial).toLowerCase() === questions2[count].cloze) {
-					console.log("correct");
-					correctlyAnswerd;
-					count ++
-					//call the recursion function
-					quizlet2();
-				} 
-				else { 
-					console.log("incorrect");
-					console.log("correct Answer:  " + questions2[count].cloze);
-					count ++
+if((answer.partial).toLowerCase() === questions2[count].cloze) {
+	console.log("correct");
+	log("\ncorrect");
+	rightAnswer++;
+
+	count ++
+	//call the recursion function
+	quizlet2();
+
+    log("\n============================================");
+}
+
+else { 
+	console.log("incorrect");
+	log("\nincorrect");
+	console.log("correct Answer:  " + questions2[count].cloze);
+	log("\ncorrect Answer:  " + questions2[count].cloze);
+	count ++;
+	wrongAnswer++;
+	
+    log("\n============================================");
 					//call the recursion function
 					quizlet2();
 				}
@@ -120,4 +142,22 @@ function quizlet2() {
 
 
 }
+// collect the data and append it to log.txt
+ function log(data) {
+    fs.appendFile("log.txt", data, function(error) {
+      if (error) {
+        console.log(error);
+      }
 
+    });
+  }
+// this function was suppose to tell how much the user got scored
+// function result(){
+// 		for(var i = 0; i < questions2.length; i++){
+// 			console.log("Result: " + rightAnswer + "space" + wrongAnswer);
+// 					//call the recursion function
+// 					//quizlet2();
+
+// 				}
+// }
+// result();
