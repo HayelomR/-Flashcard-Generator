@@ -1,5 +1,5 @@
 {
-  "name": "flash-generator",
+  "name": "flashcard-generator",
   "version": "1.0.0",
   "description": "Advanced JavaScript Assignment: Cloze Constructors",
   "main": "main.js",
@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/HayelomR/-Flashcard-Generator#readme",
   "dependencies": {
-    "express": "^4.15.4",
     "inquirer": "^3.2.1"
   }
 }
