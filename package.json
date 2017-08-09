@@ -2,7 +2,7 @@
   "name": "Flashcard-Generator",
   "version": "1.0.0",
   "description": "Advanced JavaScript Assignment: Cloze Constructors",
-  "main": "BasicCard.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +19,5 @@
   "homepage": "https://github.com/HayelomR/-Flashcard-Generator#readme",
   "dependencies": {
     "inquirer": "^3.2.1"
-  },
-  "devDependencies": {}
+  }
 }
