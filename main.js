@@ -5,7 +5,7 @@ var fs = require("fs");
 //get the cloze card file
 var ClozeCard = require("./ClozeCard.js");
  //get me inquirer
- var inquirer = require("inquirer");
+var inquirer = require("inquirer");
 //===== Declare varilables first ======
 // the question1 pulls questions for the basic card.
 var questions1 = [];
@@ -35,7 +35,7 @@ var cloze2 = new ClozeCard("... anything that occupies space and has mass is cal
 var cloze3 = new ClozeCard("the subatomic particle without a charge and found in nucleus is called...?", "neutron");
 var cloze4 = new ClozeCard("electron is  subatomic particle  have a ... charge and found outside nucleus but surrounds it?", "negative");
 var cloze5 = new ClozeCard("an atom is the smallest particle of an ... that retains the properties of the element?", "element"); 
-//========push this questions
+//========push this questions 
 questions2.push(cloze1);
 questions2.push(cloze2);
 questions2.push(cloze3);
@@ -146,7 +146,7 @@ else {
 //this function was suppose to tell how much the user got scored
 function result(){
 	if(count >= 5) {
-		console.log("\nHere is your result: " + "\nCorrectly Answerd = " + 
+		console.log("\nHere is your result: " + "\nCorrectly Answered = " + 
 			rightAnswer + "\nWrong Answer = " + wrongAnswer);
 					//call the recursion function
 
